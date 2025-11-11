@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Quiz</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .quiz-container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        .quiz-options {
+            margin-bottom: 30px;
+        }
+        .quiz-options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .submit-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-group .submit-button {
+            flex: 0 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="./Videos/Video_HD_Preview.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <h1 class="header">Personality Quiz</h1>
+    <li style="color: white; list-style-type: none;">(SAMPLE)ActionFigureMaker.Net</li>
+    <div class="quiz-container">
+        <form id="quiz-form" action="results.html" method="GET">
+            <div class="quiz-question">
+                <h3>1. How do you typically approach a challenge?</h3>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q1" value="student"> A. With curiosity and a willingness to learn.</label>
+                    <label><input type="radio" name="q1" value="policeman"> B. Assessing risks and taking control.</label>
+                    <label><input type="radio" name="q1" value="overthinker"> C. Overanalyzing every detail before taking action.</label>
+                    <label><input type="radio" name="q1" value="dreamer"> D. Dreaming up creative solutions and thinking outside the box.</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h3>2. What’s your ideal working environment?</h3>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q2" value="student"> A. A structured and supportive environment where learning is encouraged.</label>
+                    <label><input type="radio" name="q2" value="policeman"> B. A dynamic setting that involves quick decision-making.</label>
+                    <label><input type="radio" name="q2" value="overthinker"> C. Quiet and solitary, where you can focus on thoughts.</label>
+                    <label><input type="radio" name="q2" value="dreamer"> D. A collaborative space filled with innovation and ideas.</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h3>3. How do you handle a sudden, unexpected situation?</h3>
+                <div class="quiz-options">
+                    <label><input type="radio" name="question3" value="student"> A. I stay calm and seek guidance to learn from the experience.</label>
+                    <label><input type="radio" name="question3" value="policeman"> B. I take control and rely on my instincts.</label>
+                    <label><input type="radio" name="question3" value="overthinker"> C. I panic internally and overthink the consequences.</label>
+                    <label><input type="radio" name="question3" value="dreamer"> D. I see it as a chance to think creatively and adapt.</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h3>4. What motivates you the most?</h3>
+                <div class="quiz-options">
+                    <label><input type="radio" name="question4" value="student"> A. Gaining knowledge and achieving academic success.</label>
+                    <label><input type="radio" name="question4" value="policeman"> B. Keeping people safe and maintaining order.</label>
+                    <label><input type="radio" name="question4" value="overthinker"> C. Understanding the “why” behind everything.</label>
+                    <label><input type="radio" name="question4" value="dreamer"> D. Exploring new technologies and imagining possibilities.</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h3>5. Which type of task are you most likely to enjoy?</h3>
+                <div class="quiz-options">
+                    <label><input type="radio" name="question5" value="student"> A. One that involves learning new concepts and solving problems.</label>
+                    <label><input type="radio" name="question5" value="policeman"> B. Something that involves solving real-world problems quickly.</label>
+                    <label><input type="radio" name="question5" value="overthinker"> C. Analyzing complex ideas or patterns for hours.</label>
+                    <label><input type="radio" name="question5" value="dreamer"> D. Designing or creating something innovative and futuristic.</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h3>6. Upload a Selfie</h3>
+                <div class="quiz-options">
+                    <label for="selfieUpload">Please upload a selfie to personalize your action figure:</label>
+                    <input type="file" id="selfieUpload" name="selfie" accept="image/*" style="margin-top: 10px;">
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="button" class="submit-button" onclick="location.href='index.html'">Back</button>
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>Contact Me: <a href="mailto:s3152647@students.fscj.edu">s3152647@students.fscj.edu</a></p>
+    </footer>
+</body>
+</html>

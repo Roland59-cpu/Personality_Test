@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Quiz! </title>
+    <link rel="stylesheet" href="styles/main.css"> <!-- Link to external stylesheet -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Fallback color */
+            min-height: 100vh; /* Allow scrolling for the entire page */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place the video behind other content */
+        }
+        .content {
+            display: flex;
+            align-items: flex-start; /* Align content to the top */
+            justify-content: center; /* Center the content horizontally */
+            gap: 20px; /* Add spacing between the text and the image */
+            margin-top: 50px; /* Adjust margin to avoid overlapping with the header */
+            position: relative; /* Ensure content is above the video */
+        }
+        .image img {
+            max-width: 400px; /* Increase the maximum width */
+            height: auto;
+            border-radius: 10px; /* Optional: Add rounded corners */
+            transition: opacity 1s ease-in-out; /* Smooth transition for image change */
+        }
+        .image img.hidden {
+            opacity: 0; /* Hide the image */
+        }
+        h2 {
+            margin: 20px; /* Add margins to ensure h2 is not touching the border */
+        }
+        .quiz-button {
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .quiz-button:hover {
+            background-color: black;
+            color: white;
+        }
+        .text-container {
+            background-color: #ff69b4; /* Pink background */
+            border: 2px solid #ff69b4; /* Pink border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Add padding inside the container */
+            margin-bottom: 20px; /* Add spacing between containers */
+            opacity: 0.8; /* Lower the opacity */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Black shadow inside the container */
+        }
+        .text-container p {
+            font-size: 18px; /* Increase the font size of the paragraphs */
+        }
+        h1 {
+            position: absolute; /* Position the header independently */
+            top: 20px; /* Adjust vertical position */
+            left: 20px; /* Align to the left */
+            margin: 0;
+            color: white;
+        }
+        @media (max-width: 1024px) {
+            body {
+                font-size: 16px; /* Adjust font size for smaller screens */
+            }
+            .content {
+                flex-direction: row; /* Arrange content horizontally */
+                justify-content: space-between; /* Space out text and slideshow */
+                align-items: flex-start; /* Align items to the top */
+                gap: 10px; /* Reduce spacing between elements */
+            }
+            .image img {
+                max-width: 300px; /* Reduce image size for smaller screens */
+            }
+            h1 {
+                font-size: 24px; /* Adjust header font size */
+                top: 10px; /* Adjust vertical position */
+                left: 10px; /* Adjust horizontal position */
+            }
+            .text-container {
+                padding: 10px; /* Reduce padding */
+                font-size: 14px; /* Adjust text size */
+            }
+            .quiz-button {
+                font-size: 14px; /* Adjust button font size */
+                padding: 8px 16px; /* Adjust button padding */
+            }
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="./Videos/Video_HD_Preview.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <h1>Welcome Interactive Action Figure Generator!</h1>
+    <li style="color: white; list-style-type: none;">(SAMPLE)ActionFigureMaker.Net</li>
+    <section>
+        <div class="content">
+            <div class="text">
+                <h3>
+                    <div class="text-container">
+                        <p>As a passionate computer science student with a love for creative technology, I’ve designed a webpage generator that brings quiz results to life in an exciting way!</p>
+                        <button class="quiz-button" onclick="location.href='quiz.html'">Try it out!</button>
+                    </div>
+                    <div class="text-container">
+                        <p>This innovative tool takes user inputs from a personality quiz and creates a fully customized, animated action figure based on the results.</p>
+                        <button class="quiz-button" onclick="location.href='quiz.html'">Take the Quiz!</button>
+                    </div>
+                    <div class="text-container">
+                        <p>Whether it’s a daring adventurer, a tech-savvy hero, or an artistic visionary, each figure is tailored to reflect the user’s unique traits.The magic happens with a blend of engaging web design and dynamic animations. Users simply complete the quiz, upload a selfie, and watch as their personalized action figure takes shape on the screen—complete with colors, accessories, and animations that match their individual style. It’s a perfect mix of tech, creativity, and a little bit of fun. I can’t wait for you to try it!</p>
+                        <button class="quiz-button" onclick="location.href='quiz.html'">Get my Action Figure!</button>
+                    </div>
+                    <div class="text-container">
+                        <p>(NOTE) This is an example website. If you would like additional information on creating your own Action Figure, please click on the links below.</p>
+                        <ul>
+                            <li><a href="https://bylo.ai/features/ai-action-figure-generator" target="_blank" style="color: white;">bylo.ai Action Figure Generator</a></li>
+                            <li><a href="https://www.fotor.com/ai-image-generator/action-figure-creator/" target="_blank" style="color: white;">Fotor Action Figure Generator</a></li>
+                        </ul>
+                    </div>
+                </h3>
+            </div>
+            <div class="image">
+                <img src="./Images/Geek.JPG" id="slideshow-image"> <!-- Ensure correct file path and extension -->
+            </div>
+    </section>
+    <script>
+        const imageElement = document.getElementById('slideshow-image');
+        const images = [
+            './Images/Geek.JPG', // Ensure Geek.JPG is included in the array
+            './Images/BBQ_Pitmaster.jpg',
+            './Images/Artist.jpg',
+            './Images/Producer.JPG',
+            './Images/Rockstar.JPG',
+            './Images/SpaceRanger.JPG',
+            './Images/ToySolider.JPG',
+            './Images/TrackStar.jpg'
+        ];
+        let currentImageIndex = 0;
+
+        function preloadImages(imageArray, callback) {
+            let loadedImages = 0;
+            const validImages = [];
+
+            imageArray.forEach((src, index) => {
+                const img = new Image();
+                img.onload = () => {
+                    validImages.push(src);
+                    loadedImages++;
+                    if (loadedImages === imageArray.length) callback(validImages);
+                };
+                img.onerror = () => {
+                    loadedImages++;
+                    if (loadedImages === imageArray.length) callback(validImages);
+                };
+                img.src = src;
+            });
+        }
+
+        preloadImages(images, (validImages) => {
+            setInterval(() => {
+                imageElement.classList.add('hidden'); // Add hidden class for fade-out effect
+                setTimeout(() => {
+                    currentImageIndex = (currentImageIndex + 1) % validImages.length;
+                    imageElement.src = validImages[currentImageIndex]; // Change the image source
+                    imageElement.classList.remove('hidden'); // Remove hidden class for fade-in effect
+                }, 1000); // Wait for fade-out transition to complete
+            }, 4000); // Change image every 4 seconds
+        });
+    </script>
+    <footer>
+        <p style="text-align: center; margin-top: 20px; color: white;">
+            Contact Me: <a href="mailto:s3152647@students.fscj.edu" style="color: #00bfff; text-decoration: none;">s3152647@students.fscj.edu</a>
+        </p>
+    </footer>
+</body>
+</html>

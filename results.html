@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="styles/main.css"> <!-- Link to external stylesheet -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Fallback color */
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            flex-direction: column; /* Allow stacking of content and footer */
+            justify-content: space-between; /* Push footer to the bottom */
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place the video behind other content */
+        }
+        .content {
+            position: relative; /* Ensure content is above the video */
+            z-index: 1;
+        }
+        .results-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px; /* Increased width for side-by-side layout */
+            margin: 20px auto; /* Adjust margin for spacing */
+            flex-grow: 1; /* Allow the results container to take up most of the page */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left; /* Align text to the left */
+        }
+        .result-text {
+            flex: 1;
+            margin-right: 20px;
+            color: white;
+            text-align: center; /* Center the text */
+        }
+        .result-image {
+            max-width: 300px; /* Increase the maximum width */
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .quiz-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .quiz-button:hover {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0; /* Add spacing around the header */
+            color: white;
+        }
+        p {
+            font-size: 18px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out; /* Faster transition */
+        }
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out; /* Faster transition */
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center; /* Center buttons horizontally */
+            gap: 10px; /* Add spacing between buttons */
+            margin-top: 20px; /* Add spacing above the button group */
+        }
+        .button-group .quiz-button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-group .quiz-button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="./Videos/Video_HD_Preview.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <h1>Your Quiz Results</h1>
+    <li style="color: white; list-style-type: none;">(SAMPLE)ActionFigureMaker.Net</li>
+    <div class="content">
+        <div class="results-container">
+            <div class="result-text">
+                <h2>Congratulations!</h2>
+                <p id="resultText" class="loading">Loading your results...</p>
+                <div class="button-group">
+                    <button class="quiz-button" onclick="location.href='quiz.html'">Retake Quiz</button>
+                    <button class="quiz-button" onclick="location.href='index.html'">Home</button>
+                </div>
+            </div>
+            <img id="resultImage" class="result-image" src="" alt="" style="display: none;">
+        </div>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const scores = {
+                student: 0, // Changed from soldier to student
+                policeman: 0,
+                overthinker: 0,
+                dreamer: 0
+            };
+
+            // Count the scores based on query parameters
+            for (const [key, value] of urlParams.entries()) {
+                if (scores[value] !== undefined) {
+                    scores[value]++;
+                }
+            }
+
+            // Determine the highest score
+            const highestScore = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+            // Display the result after a delay
+            const resultText = document.getElementById('resultText');
+            const resultImage = document.getElementById('resultImage');
+            const totalAnswers = Object.values(scores).reduce((sum, score) => sum + score, 0);
+
+            setTimeout(() => {
+                resultText.classList.add('hidden'); // Fade out "Loading your results..."
+                setTimeout(() => {
+                    if (totalAnswers === 0) {
+                        resultText.classList.remove('hidden');
+                        resultText.innerHTML = `<strong>No results found. Please Retake the quiz.</strong>`;
+                    } else if (highestScore) {
+                        resultText.classList.remove('hidden');
+                        if (highestScore === "student") {
+                            resultText.innerHTML = `<strong>"The Student"</strong><br><br>
+                            Curious, disciplined, and eager to learn, you embody the qualities of a dedicated student. You approach challenges with a thirst for knowledge and a structured mindset. Your ability to adapt and grow makes you a lifelong learner and an inspiration to others. Keep striving for excellence—you’re destined for greatness!`;
+                            resultImage.src = "./Images/Campus_Heroine.jpg"; // Display Campus_Herione.jpg
+                            resultImage.alt = "Campus Heroine";
+                            resultImage.style.display = "block";
+                        } else if (highestScore === "policeman") {
+                            resultText.innerHTML = `<strong>"The Policeman"</strong><br><br>
+                            Brave, decisive, and protective, you embody the qualities of a true policeman. You thrive in dynamic situations, making quick decisions to maintain order and safety. Your sense of justice and responsibility inspires those around you. Just like a policeman, you stand as a guardian of peace and security.`;
+                            resultImage.src = "./Images/policewoman.jpg"; // Ensure the correct path
+                            resultImage.alt = "Policewoman";
+                            resultImage.style.display = "block";
+                        } else if (highestScore === "overthinker") {
+                            resultText.innerHTML = `<strong>"The Overthinker"</strong><br><br>
+                            Analytical, introspective, and detail-oriented, you embody the qualities of an overthinker. You excel at breaking down complex problems and finding patterns others might miss. While your deep thinking can sometimes lead to hesitation, it also makes you a valuable strategist and problem solver. Embrace your unique perspective—it’s your greatest strength!`;
+                            resultImage.src = "./Images/overthinker.jpg"; // Ensure the correct path
+                            resultImage.alt = "Overthinker";
+                            resultImage.style.display = "block";
+                        } else if (highestScore === "dreamer") {
+                            resultText.innerHTML = `<strong>"The Dreamer"</strong><br><br>
+                            Imaginative, innovative, and visionary, you embody the qualities of a dreamer. You see possibilities where others see obstacles and thrive in creative environments. Your ability to think outside the box and inspire others makes you a natural innovator. Keep dreaming big—you’re destined to create amazing things!`;
+                            resultImage.src = "./Images/DigitalDreamer.jpg"; // Ensure the correct path
+                            resultImage.alt = "Digital Dreamer";
+                            resultImage.style.display = "block";
+                        }
+                    }
+                }, 500); // Faster delay for fading in results
+            }, 1000); // Faster delay for "Loading your results..."
+        </script>
+    </div>
+    <footer>
+        <p>Contact Me: <a href="mailto:s3152647@students.fscj.edu">s3152647@students.fscj.edu</a></p>
+    </footer>
+</body>
+</html>
