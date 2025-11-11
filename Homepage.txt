@@ -1,0 +1,12 @@
+Welcome to the Interactive Action Figure Generator!
+
+My name is Macy Roland. I am a Computer Science student at Florida State College of Jacksonville 
+        and this is my Intergrated Action Figure Generator!
+       
+                    As a passionate computer science student with a love for creative technology, I’ve designed a webpage generator that brings quiz results to life in an exciting way!
+                    Try it out!
+                    This innovative tool takes user inputs from a personality quiz and creates a fully customized, animated action figure based on the results.
+                    Take the Quiz!
+                    Whether it’s a daring adventurer, a tech-savvy hero, or an artistic visionary, each figure is tailored to reflect the user’s unique traits.
+                   Get my Action Figure!
+                     magic happens with a blend of engaging web design and dynamic animations. Users simply complete the quiz, upload a selfie, and watch as their personalized action figure takes shape on the screen—complete with colors, accessories, and animations that match their individual style. It’s a perfect mix of tech, creativity, and a little bit of fun. I can’t wait for you to try it!The

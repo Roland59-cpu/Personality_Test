@@ -1,0 +1,76 @@
+/* ...existing code... */
+h1 {
+    color: white;
+    text-align: center; /* Center the text horizontally */
+    margin-top: 20px; /* Optional: Add spacing from the top */
+}
+h2 {
+    color: white;
+}
+section h3, section p {
+    color: white;
+    line-height: 1.6; /* Optional: Improve readability */
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text {
+    flex: 0.7; /* Decrease the width of the left column */
+    padding-right: 20px;
+    margin-left: 20px; /* Add margin to the left to prevent text from touching the border */
+}
+
+.image img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.quiz-button {
+    display: block;
+    margin: 10px auto; /* Center the button horizontally */
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 5px grey; /* Change shadow to be inside the button */
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.quiz-button:hover {
+    background-color: #f0f0f0; /* Optional: Slight hover effect */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use full viewport height */
+    text-align: center;
+    margin: 0; /* Ensure no extra spacing is added */
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and borders are included in height */
+}
+
+fieldset {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+legend {
+    font-weight: bold;
+    text-align: center;
+}
+/* ...existing code... */
